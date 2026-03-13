@@ -6,6 +6,9 @@
     <title>Pixel Perfect Frontend | Tu Visión en Código Moderno</title>
     <meta name="description" content="Servicios profesionales de maquetación front-end con HTML, CSS y JS puro. Conversión de Figma a código pixel-perfect.">
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -15,7 +18,14 @@
     <nav id="navbar">
         <div class="container nav-content">
             <a href="#" class="logo">PixelDraft</a>
-            <ul class="nav-links">
+            
+            <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir menú">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#proyectos">Proyectos</a></li>

@@ -28,9 +28,21 @@ document.querySelectorAll('.fade-in').forEach(element => {
 // Smooth Scroll for Navigation Links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        
+        // Si el enlace es solo "#", scroll al inicio o ignorar para evitar error
+        if (href === '#') {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            return;
+        }
+
+        const target = document.querySelector(href);
         if (target) {
+            e.preventDefault();
             window.scrollTo({
                 top: target.offsetTop - 80,
                 behavior: 'smooth'
@@ -78,3 +90,26 @@ if (contactForm) {
         }, 1500);
     });
 }
+
+// Mobile Menu Toggle
+const mobileNavToggle = document.getElementById('mobileNavToggle');
+const navLinks = document.getElementById('navLinks');
+
+if (mobileNavToggle) {
+    mobileNavToggle.addEventListener('click', () => {
+        mobileNavToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        
+        // Evitar scroll en el body cuando el menú está abierto
+        document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+    });
+}
+
+// Close mobile menu when clicking a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileNavToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+});
